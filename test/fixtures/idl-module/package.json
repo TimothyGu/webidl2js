@@ -1,0 +1,10 @@
+{
+  "name": "idl-module",
+  "webidl2js": {
+    "idl": [
+      "lib/ImportedInterface.idl",
+      "lib/ImportedDictionary.idl"
+    ],
+    "interface": "lib/"
+  }
+}

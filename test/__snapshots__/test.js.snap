@@ -1099,6 +1099,8 @@ const utils = require(\\"./utils.js\\");
 
 const isURL = require(\\"./URL.js\\").is;
 const convertURL = require(\\"./URL.js\\").convert;
+const convertImportedDictionary = require(\\"idl-module/lib/ImportedDictionary.js\\").convert;
+const isImportedInterface = require(\\"idl-module/lib/ImportedInterface.js\\").is;
 const impl = utils.implSymbol;
 
 function TypedefsAndUnions() {
@@ -1439,6 +1441,91 @@ TypedefsAndUnions.prototype.arrayBufferViewDupConsumer = function arrayBufferVie
     );
   }
   return this[impl].arrayBufferViewDupConsumer(...args);
+};
+
+TypedefsAndUnions.prototype.importedDictionaryConsumer = function importedDictionaryConsumer(v) {
+  if (!this || !module.exports.is(this)) {
+    throw new TypeError(\\"Illegal invocation\\");
+  }
+
+  if (arguments.length < 1) {
+    throw new TypeError(
+      \\"Failed to execute 'importedDictionaryConsumer' on 'TypedefsAndUnions': 1 \\" +
+        \\"argument required, but only \\" +
+        arguments.length +
+        \\" present.\\"
+    );
+  }
+
+  const args = [];
+  for (let i = 0; i < arguments.length && i < 1; ++i) {
+    args[i] = arguments[i];
+  }
+
+  args[0] = convertImportedDictionary(args[0], {
+    context: \\"Failed to execute 'importedDictionaryConsumer' on 'TypedefsAndUnions': parameter 1\\"
+  });
+
+  return this[impl].importedDictionaryConsumer(...args);
+};
+
+TypedefsAndUnions.prototype.importedInterfaceConsumer = function importedInterfaceConsumer(v) {
+  if (!this || !module.exports.is(this)) {
+    throw new TypeError(\\"Illegal invocation\\");
+  }
+
+  if (arguments.length < 1) {
+    throw new TypeError(
+      \\"Failed to execute 'importedInterfaceConsumer' on 'TypedefsAndUnions': 1 \\" +
+        \\"argument required, but only \\" +
+        arguments.length +
+        \\" present.\\"
+    );
+  }
+
+  const args = [];
+  for (let i = 0; i < arguments.length && i < 1; ++i) {
+    args[i] = arguments[i];
+  }
+
+  if (isImportedInterface(args[0]) || isURL(args[0])) {
+    args[0] = utils.implForWrapper(args[0]);
+  } else {
+    throw new TypeError(
+      \\"Failed to execute 'importedInterfaceConsumer' on 'TypedefsAndUnions': parameter 1\\" +
+        \\" is not of any supported type.\\"
+    );
+  }
+  return this[impl].importedInterfaceConsumer(...args);
+};
+
+TypedefsAndUnions.prototype.importedTypedefConsumer = function importedTypedefConsumer(v) {
+  if (!this || !module.exports.is(this)) {
+    throw new TypeError(\\"Illegal invocation\\");
+  }
+
+  if (arguments.length < 1) {
+    throw new TypeError(
+      \\"Failed to execute 'importedTypedefConsumer' on 'TypedefsAndUnions': 1 \\" +
+        \\"argument required, but only \\" +
+        arguments.length +
+        \\" present.\\"
+    );
+  }
+
+  const args = [];
+  for (let i = 0; i < arguments.length && i < 1; ++i) {
+    args[i] = arguments[i];
+  }
+
+  if (isImportedInterface(args[0])) {
+    args[0] = utils.implForWrapper(args[0]);
+  } else {
+    args[0] = conversions[\\"DOMString\\"](args[0], {
+      context: \\"Failed to execute 'importedTypedefConsumer' on 'TypedefsAndUnions': parameter 1\\"
+    });
+  }
+  return this[impl].importedTypedefConsumer(...args);
 };
 
 Object.defineProperty(TypedefsAndUnions.prototype, \\"buf\\", {

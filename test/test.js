@@ -8,12 +8,14 @@ const Transformer = require("..");
 
 const rootDir = path.resolve(__dirname, "..");
 const casesDir = path.resolve(__dirname, "cases");
+const fixturesDir = path.resolve(__dirname, "fixtures");
 const implsDir = path.resolve(__dirname, "implementations");
 const outputDir = path.resolve(__dirname, "output");
 
 beforeAll(() => {
   const transformer = new Transformer();
   transformer.addSource(casesDir, implsDir);
+  transformer.addModule("idl-module", path.resolve(fixturesDir, "idl-module/package.json"));
 
   return transformer.generate(outputDir);
 });

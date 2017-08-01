@@ -7,6 +7,9 @@ interface TypedefsAndUnions {
   void bufferSourceOrURLConsumer((BufferSource or URL) b);
   void arrayBufferViewOrURLMapConsumer((ArrayBufferView or URLMap) b);
   void arrayBufferViewDupConsumer((ArrayBufferView or Uint8ClampedArray) b);
+  void importedDictionaryConsumer(ImportedDictionary v);
+  void importedInterfaceConsumer((ImportedInterface or URL) v);
+  void importedTypedefConsumer(ImportedTypedef v);
 
   attribute (ArrayBuffer or Uint8Array or Uint16Array) buf;
   attribute DOMTimeStamp time;
